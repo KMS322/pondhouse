@@ -6,6 +6,7 @@ import ScrollToTop from "./scrollToTop.js";
 import Header from "./components/header.js";
 import Footer from "./components/footer.js";
 import Main from "./components/main/main.js";
+import Portfolio from "./components/portfolio/portfolio.js";
 function App() {
   return (
     <>
@@ -13,6 +14,7 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/portfolio" element={<Portfolio />} />
       </Routes>
       <Footer />
     </>

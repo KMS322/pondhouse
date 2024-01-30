@@ -13,8 +13,9 @@
   align-items: flex-end;
   justify-content: space-between;
 }
-.header .header_container img {
+.header .header_container > img {
   height: 100%;
+  cursor: pointer;
 }
 .header .header_container .nav_box {
   display: flex;
@@ -23,4 +24,5 @@
   font-size: 1.04vw;
   color: #707070;
   margin-left: 4.17vw;
+  cursor: pointer;
 }
