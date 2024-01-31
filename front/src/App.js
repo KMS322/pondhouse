@@ -1,20 +1,29 @@
 import "./App.css";
 import "./css/fonts.css";
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import ScrollToTop from "./scrollToTop.js";
 import Header from "./components/header.js";
 import Footer from "./components/footer.js";
 import Main from "./components/main/main.js";
 import Portfolio from "./components/portfolio/portfolio.js";
+import Contact from "./components/contact/contact.js";
 function App() {
+  const [currentPage, setCurrentPage] = useState();
+  const location = useLocation();
+  useEffect(() => {
+    const page = location.pathname;
+    setCurrentPage(page);
+  }, [location]);
+
   return (
     <>
-      <Header />
+      <Header page={currentPage} />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
     </>

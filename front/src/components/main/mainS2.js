@@ -6,6 +6,7 @@ const MainS2 = () => {
         <img src="/images/arrow_left.png" alt="" />
         <img src="/images/main_s2.jpg" alt="" />
         <img src="/images/arrow_right.png" alt="" />
+        <img src="/images/play_btn.png" alt="" />
       </div>
     </div>
   );

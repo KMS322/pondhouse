@@ -4,6 +4,17 @@
   height: 56.67vw;
   display: flex;
 }
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .main_s1 .text_box {
   width: 19.5%;
   height: 39.98%;
@@ -11,7 +22,10 @@
   margin-left: 14.48vw;
   font-size: 1.82vw;
   line-height: 2.5vw;
+  letter-spacing: -0.05vw;
+  animation: fadeInSlideUp 1s ease-in-out;
 }
+
 .main_s1 > img {
   width: 46.88%;
   height: fit-content;
@@ -36,6 +50,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 .main_s2 .article_container img {
   width: 3.03%;
@@ -44,7 +59,14 @@
 .main_s2 .article_container img:nth-child(2) {
   width: 74.71%;
 }
-
+.main_s2 .article_container img:nth-child(4) {
+  width: 7.33%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
 /* main_s3 */
 .main_s3 {
   width: 100%;
@@ -62,10 +84,10 @@
   width: 43.34%;
   height: 61.62%;
 }
-.main_s3 .article_container .text_box p:nth-child(1) {
+.main_s3 .article_container .text_box > p:nth-child(1) {
   font-size: 1.04vw;
 }
-.main_s3 .article_container .text_box p:nth-child(2) {
+.main_s3 .article_container .text_box > p:nth-child(2) {
   font-size: 1.04vw;
   font-family: "Muli";
   margin-top: 0.36vw;
@@ -77,12 +99,25 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  animation: fadeInSlideUp 1s ease-in-out;
 }
 .main_s3 .article_container .text_box .sub_text_box p {
   font-size: 1.56vw;
   letter-spacing: -0.1vw;
 }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .main_s3 .article_container img {
   width: 54.06%;
   height: 100%;
+  /* animation: fadeIn 1s ease-in-out; */
+}
+.animate {
+  animation: fadeInSlideUp 2s ease-in-out;
 }

@@ -1,4 +1,5 @@
 import "../../css/main.css";
+import "../../css/main_mobile.css";
 import MainS1 from "./mainS1";
 import MainS2 from "./mainS2";
 import MainS3 from "./mainS3";
