@@ -1,0 +1,29 @@
+/* process */
+.process .table_container .row p:nth-child(1) {
+  margin-left: 2.55vw;
+  width: 3.14%;
+}
+.process .table_container .row p:nth-child(2) {
+  margin-left: 1.82vw;
+  width: 14.48%;
+}
+.process .table_container .row p:nth-child(3) {
+  margin-left: 1.82vw;
+  width: 18.78%;
+}
+.process .table_container .row p:nth-child(4) {
+  margin-left: 1.82vw;
+  width: 10.11%;
+}
+.process .table_container .row p:nth-child(5) {
+  margin-left: 1.82vw;
+  width: 7.53%;
+}
+.process .table_container .row p:nth-child(6) {
+  margin-left: 1.82vw;
+  width: 18.92%;
+}
+.process .table_container .row p:nth-child(7) {
+  margin-left: 1.82vw;
+  width: 6.38%;
+}

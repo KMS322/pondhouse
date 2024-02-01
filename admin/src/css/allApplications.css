@@ -1,0 +1,25 @@
+/* allApplications */
+.allApplications .table_container .row p:nth-child(1) {
+  margin-left: 2.55vw;
+  width: 4.3%;
+}
+.allApplications .table_container .row p:nth-child(2) {
+  margin-left: 1.82vw;
+  width: 13.05%;
+}
+.allApplications .table_container .row p:nth-child(3) {
+  margin-left: 1.82vw;
+  width: 10.75%;
+}
+.allApplications .table_container .row p:nth-child(4) {
+  margin-left: 1.67vw;
+  width: 36.99%;
+}
+.allApplications .table_container .row p:nth-child(5) {
+  margin-left: 1.88vw;
+  width: 5.74%;
+}
+.allApplications .table_container .row p:nth-child(6) {
+  margin-left: 5.36vw;
+  width: 5.74%;
+}

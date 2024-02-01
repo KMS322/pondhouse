@@ -1,0 +1,88 @@
+.section {
+  width: 84.22%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.table_container {
+  width: 86.27%;
+  height: auto;
+  margin-top: 4.17vw;
+}
+.table_container .row {
+  height: 2.6vw;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.table_container .row_head {
+  height: 1.82vw;
+  border: 1px solid #919191;
+  border-left: none;
+  border-right: none;
+}
+.table_container .even {
+  background-color: #f7f7f7;
+}
+.table_container .row_head p {
+  font-size: 1.04vw;
+  font-weight: 400;
+  letter-spacing: -0.09vw;
+  padding: 0;
+}
+.table_container p {
+  font-size: 0.78vw;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid red; */
+}
+.modal {
+  width: 26.04vw;
+  height: 15.625vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.modal p {
+  font-size: 1.2vw;
+  font-weight: 500;
+}
+.modal button {
+  width: 6.04vw;
+  height: 2.06vw;
+  border: 1px solid black;
+}
+.section .back_btn {
+  width: 8.32%;
+  height: 1.72vw;
+  margin-top: 1.78vw;
+  margin-bottom: 1.78vw;
+  background-color: #cabd99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.78vw;
+  cursor: pointer;
+}
+
+.section .user_box {
+  display: flex;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+.section .user_box p {
+  font-size: 1.09vw;
+  margin-right: 1vw;
+}

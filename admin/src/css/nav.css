@@ -1,0 +1,27 @@
+/* nav */
+.nav {
+  width: 15.63%;
+  height: auto;
+  background-color: #cabd99;
+}
+.nav .menu {
+  width: 100%;
+  height: 4.48vw;
+  border-bottom: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2vw;
+  color: white;
+  cursor: pointer;
+}
+.nav .sub_menu {
+  width: 100%;
+  height: 3.65vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2vw;
+  background-color: white;
+  cursor: pointer;
+}
