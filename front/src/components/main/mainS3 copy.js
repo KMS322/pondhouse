@@ -1,24 +1,38 @@
 import React, { useRef, useEffect } from "react";
 const MainS3 = () => {
   const mainS3Ref = useRef(null);
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const triggerPosition = (115 * window.innerWidth) / 100; // 120vw in pixels
 
-      if (scrollPosition >= triggerPosition && mainS3Ref.current) {
-        mainS3Ref.current.classList.add("animate"); // Add 'animate' class to start the animation
-        window.removeEventListener("scroll", handleScroll);
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5, // Trigger when 50% of the element is visible
+    };
+
+    const callback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Start your animation here (e.g., add a class to trigger CSS animation)
+          entry.target.classList.add("animate"); // Assuming you have an 'animate' class in your CSS
+          observer.unobserve(entry.target); // Stop observing once the animation is triggered
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+
+    if (mainS3Ref.current) {
+      observer.observe(mainS3Ref.current);
+    }
+
+    // Cleanup the observer when component unmounts
+    return () => {
+      if (mainS3Ref.current) {
+        observer.unobserve(mainS3Ref.current);
       }
     };
-
-    window.addEventListener("scroll", handleScroll);
-
-    // Cleanup the event listener when component unmounts
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
   }, []);
+
   return (
     <div className="main_s3" ref={mainS3Ref}>
       <div className="article_container">

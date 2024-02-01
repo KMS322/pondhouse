@@ -14,7 +14,6 @@
     transform: translateY(0);
   }
 }
-
 .main_s1 .text_box {
   width: 19.5%;
   height: 39.98%;
@@ -25,7 +24,6 @@
   letter-spacing: -0.05vw;
   animation: fadeInSlideUp 1s ease-in-out;
 }
-
 .main_s1 > img {
   width: 46.88%;
   height: fit-content;
@@ -116,7 +114,6 @@
 .main_s3 .article_container img {
   width: 54.06%;
   height: 100%;
-  /* animation: fadeIn 1s ease-in-out; */
 }
 .animate {
   animation: fadeInSlideUp 2s ease-in-out;

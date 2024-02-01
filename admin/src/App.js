@@ -7,11 +7,12 @@ import Header from "./component/header.js";
 import ScrollToTop from "./scrollToTop.js";
 import Login from "./component/login.js";
 import MainComponent from "./component/mainComponent";
-
+import SubHeader from "./component/subHeader.js";
 function App() {
   return (
     <div className="app_container">
       <Header />
+      <SubHeader />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainComponent />} />
