@@ -1,13 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define(
-    "User",
+  const VideoList = sequelize.define(
+    "VideoList",
     {
-      admin_id: {
-        type: DataTypes.STRING(30),
+      file_name: {
+        type: DataTypes.STRING(100),
         allowNull: false,
-        unique: true,
       },
-      admin_pw: {
+      file_title: {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
@@ -17,6 +16,6 @@ module.exports = (sequelize, DataTypes) => {
       collate: "utf8_general_ci",
     }
   );
-  User.associate = (db) => {};
-  return User;
+  VideoList.associate = (db) => {};
+  return VideoList;
 };
