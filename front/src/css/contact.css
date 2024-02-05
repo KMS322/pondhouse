@@ -81,8 +81,7 @@
   width: 100%;
   height: 89.82%;
   font-size: 1.04vw;
-  padding-top: 0.5vw;
-  padding-left: 0.5vw;
+  padding: 0.5vw;
 }
 .contact_s1 .article_container .input_container .check_box {
   width: 100%;

@@ -1,5 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { SEND_EMAIL_REQUEST } from "../../reducers/contact";
+import Modal from "./modal";
 const ContactS1 = () => {
+  const { sendEmailDone } = useSelector((state) => state.contact);
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
   const [day, setDay] = useState("");
@@ -8,6 +13,29 @@ const ContactS1 = () => {
   const [location, setLocation] = useState("");
   const [content, setContent] = useState("");
   const [check, setCheck] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalMsg, setModalMsg] = useState("");
+
+  useEffect(() => {
+    if (sendEmailDone) {
+      setModalMsg("success");
+      setModalOpen(true);
+    }
+  }, [sendEmailDone]);
+
+  useEffect(() => {
+    if (modalOpen) {
+      const timeoutId = setTimeout(() => {
+        setModalOpen(false);
+
+        if (modalMsg === "success") {
+          window.location.href = "/";
+        }
+      }, 2000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [modalOpen, modalMsg]);
   const handleInput = (e, inputType) => {
     const value = e.target.value;
     if (inputType === "name") {
@@ -31,7 +59,40 @@ const ContactS1 = () => {
     setSelectedTime(e.target.value);
   };
 
-  const sendForm = () => {};
+  const sendForm = (e) => {
+    e.preventDefault();
+    if (
+      !name ||
+      !tel ||
+      !day ||
+      !time ||
+      selectedTime === "선택" ||
+      !location ||
+      !content
+    ) {
+      setModalMsg("fail");
+      setModalOpen(true);
+    } else if (!check) {
+      setModalMsg("unChecked");
+      setModalOpen(true);
+    } else {
+      dispatch(
+        {
+          type: SEND_EMAIL_REQUEST,
+          data: {
+            name,
+            tel,
+            day,
+            time,
+            selectedTime,
+            location,
+            content,
+          },
+        },
+        [name, tel, day, time, selectedTime, location, content]
+      );
+    }
+  };
   return (
     <div className="contact_s1">
       <div className="article_container">
@@ -58,7 +119,7 @@ const ContactS1 = () => {
               전화번호 <sup>*</sup>
             </p>
             <input
-              type="tel"
+              type="text"
               name="tel"
               value={tel}
               onChange={(e) => {
@@ -73,7 +134,7 @@ const ContactS1 = () => {
               예식 날짜 <sup>*</sup>
             </p>
             <input
-              type="day"
+              type="text"
               name="day"
               value={day}
               onChange={(e) => {
@@ -110,7 +171,7 @@ const ContactS1 = () => {
               예식장 위치 <sup>*</sup>
             </p>
             <input
-              type="location"
+              type="text"
               name="location"
               value={location}
               onChange={(e) => {
@@ -159,6 +220,7 @@ const ContactS1 = () => {
           </div>
         </div>
       </div>
+      {modalOpen && <Modal data={modalMsg} />}
     </div>
   );
 };

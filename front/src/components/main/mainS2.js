@@ -5,12 +5,11 @@ const MainS2 = () => {
   const dispatch = useDispatch();
   const [currentVideo, setCurrentVideo] = useState(1);
   const { lists } = useSelector((state) => state.videoList);
-  console.log("lists : ", lists);
-  useEffect(() => {
-    dispatch({
-      type: LOAD_LISTS_REQUEST,
-    });
-  }, []);
+  // useEffect(() => {
+  //   dispatch({
+  //     type: LOAD_LISTS_REQUEST,
+  //   });
+  // }, []);
   return (
     <div className="main_s2">
       <p>PORTFOLIO</p>
