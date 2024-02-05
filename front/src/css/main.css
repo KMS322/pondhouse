@@ -54,17 +54,10 @@
   width: 3.03%;
   cursor: pointer;
 }
-.main_s2 .article_container img:nth-child(2) {
+.main_s2 .article_container video {
   width: 74.71%;
 }
-.main_s2 .article_container img:nth-child(4) {
-  width: 7.33%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-}
+
 /* main_s3 */
 .main_s3 {
   width: 100%;

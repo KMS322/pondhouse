@@ -4,17 +4,16 @@ const MainS3 = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const triggerPosition = (115 * window.innerWidth) / 100; // 120vw in pixels
+      const triggerPosition = (115 * window.innerWidth) / 100;
 
       if (scrollPosition >= triggerPosition && mainS3Ref.current) {
-        mainS3Ref.current.classList.add("animate"); // Add 'animate' class to start the animation
+        mainS3Ref.current.classList.add("animate");
         window.removeEventListener("scroll", handleScroll);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup the event listener when component unmounts
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };

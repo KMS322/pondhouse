@@ -1,32 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { LOAD_LISTS_REQUEST } from "../../reducers/videoList";
 const PortfolioS2 = () => {
-  const [showPopup, setShowPopup] = useState("");
-  const videoLists = [
-    {
-      src: "/videos",
-      title: "제목을 입력해 주세요.",
-    },
-  ];
+  const dispatch = useDispatch();
+  const [showPopup, setShowPopup] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState(0);
+  const { lists } = useSelector((state) => state.videoList);
+  useEffect(() => {
+    dispatch({
+      type: LOAD_LISTS_REQUEST,
+    });
+  }, [dispatch]);
 
   return (
     <>
       <div className="portfolio_s2">
         <div className="article_container">
-          {Array.from({ length: 20 }, (_, i) => (
-            <div className="video_box" key={i}>
-              <div className="video">
-                <img src="/images/portfolio_s2_img.jpg" alt="" />
-                <img
-                  src="/images/play_btn.png"
-                  alt=""
-                  onClick={() => {
-                    setShowPopup(true);
-                  }}
-                />
-              </div>
-              <p>제목을 입력해 주세요.</p>
-            </div>
-          ))}
+          {lists &&
+            lists.map((list, index) => {
+              return (
+                <div className="video_box" key={index}>
+                  <div className="video">
+                    <img src="/images/portfolio_s2_img.jpg" alt="" />
+                    <img
+                      src="/images/play_btn.png"
+                      alt=""
+                      onClick={() => {
+                        setShowPopup(true);
+                        setCurrentVideo(index);
+                      }}
+                    />
+                  </div>
+                  <p>{list.file_title}</p>
+                </div>
+              );
+            })}
         </div>
       </div>
       {showPopup ? (
@@ -39,12 +47,33 @@ const PortfolioS2 = () => {
             }}
           />
           <div className="article_container">
-            <img src="/images/arrow_left.png" alt="" />
+            <img
+              src={currentVideo === 0 ? "" : "/images/arrow_left.png"}
+              alt=""
+              onClick={() => {
+                setCurrentVideo(currentVideo - 1);
+              }}
+              // style={{ display: currentVideo === 0 ? "none" : "" }}
+            />
             <div className="video_box">
-              <div className="video"></div>
-              <img src="/images/play_btn2.png" alt="" />
+              <video
+                src={`/videos/${lists[currentVideo].file_name}`}
+                alt=""
+                autoPlay
+                controls
+              />
             </div>
-            <img src="/images/arrow_right.png" alt="" />
+            <img
+              src={
+                currentVideo === lists.length - 1
+                  ? ""
+                  : "/images/arrow_right.png"
+              }
+              alt=""
+              onClick={() => {
+                setCurrentVideo(currentVideo + 1);
+              }}
+            />
           </div>
         </div>
       ) : (
