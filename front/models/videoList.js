@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const VideoList = sequelize.define(
     "VideoList",
     {
-      file_name: {
+      file_url: {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
@@ -10,10 +10,18 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
+      file_id: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+      },
+      thumnail_url: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+      },
     },
     {
-      charset: "utf8",
-      collate: "utf8_general_ci",
+      charset: "utf8mb4",
+      collate: "utf8mb4_general_ci",
     }
   );
   VideoList.associate = (db) => {};

@@ -4,6 +4,9 @@ const router = express.Router();
 const { VideoList } = require("../models");
 const fs = require("fs");
 const path = require("path");
+const cheerio = require("cheerio");
+const axios = require("axios");
+// const puppeteer = require("puppeteer");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -38,6 +41,57 @@ router.post("/load", async (req, res, next) => {
     const fileDatas = await VideoList.findAll({});
 
     res.status(200).json(fileDatas);
+  } catch (error) {
+    console.error(error);
+    next();
+  }
+});
+
+const getVideoTitle = async (videoId) => {
+  try {
+    const response = await axios.get(
+      `https://www.youtube.com/watch?v=${videoId}`
+    );
+    const $ = cheerio.load(response.data);
+    const title = $('meta[property="og:title"]').attr("content");
+    return title;
+  } catch (error) {
+    console.error("Error fetching video title:", error);
+    return null;
+  }
+};
+
+// const getVideoTitleWithPuppeteer = async (videoId) => {
+//   const browser = await puppeteer.launch();
+//   const page = await browser.newPage();
+
+//   // YouTube 동영상 페이지 열기
+//   await page.goto(`https://www.youtube.com/watch?v=${videoId}`);
+
+//   // 동영상 제목 가져오기
+//   const title = await page.$eval('meta[property="og:title"]', (element) => element.getAttribute('content'));
+
+//   await browser.close();
+
+//   return title;
+// };
+
+router.post("/add", async (req, res, next) => {
+  try {
+    for (let i = 0; i < req.body.length; i++) {
+      videoId = req.body[i].match(/[?&]v=([^&]+)/)[1];
+      let videoTitle;
+      try {
+        videoTitle = await getVideoTitle(videoId);
+      } catch (error) {
+        console.error("Error: ", error);
+      }
+      await VideoList.create({
+        file_id: videoId,
+        file_title: videoTitle,
+        file_url: req.body[i],
+      });
+    }
   } catch (error) {
     console.error(error);
     next();

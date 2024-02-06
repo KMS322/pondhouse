@@ -79,7 +79,7 @@
   height: 20%;
 }
 
-.portfolio_s2::-webkit-scrollbar-track {
+.portfolio_s2 {
   background-color: white;
 }
 

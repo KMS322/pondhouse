@@ -1,61 +1,78 @@
 import "../css/adminUploadForm.css";
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { ADD_LISTS_REQUEST } from "../reducers/videoList";
 import axios from "axios";
+
 const AdminUploadForm = ({ handlePopup }) => {
+  const dispatch = useDispatch();
+  const [urls, setUrls] = useState([""]); // 각 URL에 대한 상태 배열
   const [title, setTitle] = useState("");
   const [file, setFile] = useState(null);
   const [selectedFileName, setSelectedFileName] = useState("");
-  const handleInput = (e) => {
-    setTitle(e.target.value);
+
+  const handleInput = (e, index) => {
+    const newUrls = [...urls];
+    newUrls[index] = e.target.value;
+    setUrls(newUrls);
+  };
+
+  const addInput = () => {
+    setUrls([...urls, ""]);
+  };
+
+  const removeInput = (index) => {
+    const newUrls = [...urls];
+    newUrls.splice(index, 1);
+    setUrls(newUrls);
+  };
+
+  const sendData = () => {
+    // urls 배열을 사용하여 데이터를 전송하는 로직 추가
+    dispatch({
+      type: ADD_LISTS_REQUEST,
+      data: urls,
+    });
   };
   const handleFileChange = (e) => {
     const attachedFile = e.target.files[0];
     setFile(attachedFile);
     setSelectedFileName(attachedFile ? attachedFile.name : "");
   };
-  const sendData = async (e) => {
-    e.preventDefault();
-
-    try {
-      const formData = new FormData();
-      formData.append("title", title);
-      formData.append("file", file, encodeURIComponent(file.name));
-      const response = await axios.post("/list/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      if (response.status === 201) {
-        handlePopup();
-        window.location.href = "/admin";
-      } else {
-        console.error("Failed to upload:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error uploading:", error);
-    }
-  };
 
   return (
     <div className="adminUploadForm">
       <img src="/images/delete_btn.png" alt="" onClick={handlePopup} />
       <div className="form_container">
-        <input
-          type="text"
-          name="title"
-          value={title}
-          onChange={handleInput}
-          placeholder="제목을 입력해주세요."
-        />
-        <label htmlFor="file">
-          <div className="upload_btn">
-            <p>+ 파일첨부</p>
-          </div>
-        </label>
-        <input id="file" type="file" onChange={handleFileChange} />
-        <p>&nbsp;{selectedFileName || ""}</p>
+        {urls.map((url, index) => (
+          <>
+            <input
+              key={index}
+              type="text"
+              name={`url-${index}`}
+              value={url}
+              onChange={(e) => handleInput(e, index)}
+              placeholder={`Youtube Url #${index + 1}을 입력해주세요.`}
+            />
+            <label htmlFor="file">
+              <div className="upload_btn">
+                <p>썸네일 등록</p>
+              </div>
+            </label>
+            <input id="file" type="file" onChange={handleFileChange} />
+            <p>&nbsp;{selectedFileName || ""}</p>
+          </>
+        ))}
       </div>
+      <div className="btn_box">
+        <div className="list_btn" onClick={() => removeInput(urls.length - 1)}>
+          삭제
+        </div>
+        <div className="list_btn" onClick={addInput}>
+          추가
+        </div>
+      </div>
+
       <div className="submit_btn" onClick={sendData}>
         업로드
       </div>

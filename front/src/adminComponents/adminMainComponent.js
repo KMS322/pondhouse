@@ -7,11 +7,11 @@ const AdminMainComponent = () => {
   const [openForm, setOpenForm] = useState(false);
   const dispatch = useDispatch();
   const { lists } = useSelector((state) => state.videoList);
-  useEffect(() => {
-    dispatch({
-      type: LOAD_LISTS_REQUEST,
-    });
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch({
+  //     type: LOAD_LISTS_REQUEST,
+  //   });
+  // }, [dispatch]);
   const deleteList = (id, fileName) => {
     dispatch({
       type: DELETE_LIST_REQUEST,

@@ -4,6 +4,9 @@ export const initialState = {
   loadListsLoading: false,
   loadListsDone: false,
   loadListsError: null,
+  addListsLoading: false,
+  addListsDone: false,
+  addListsError: null,
   deleteListLoading: false,
   deleteListDone: false,
   deleteListError: null,
@@ -13,6 +16,10 @@ export const initialState = {
 export const LOAD_LISTS_REQUEST = "LOAD_LISTS_REQUEST";
 export const LOAD_LISTS_SUCCESS = "LOAD_LISTS_SUCCESS";
 export const LOAD_LISTS_FAILURE = "LOAD_LISTS_FAILURE";
+
+export const ADD_LISTS_REQUEST = "ADD_LISTS_REQUEST";
+export const ADD_LISTS_SUCCESS = "ADD_LISTS_SUCCESS";
+export const ADD_LISTS_FAILURE = "ADD_LISTS_FAILURE";
 
 export const DELETE_LIST_REQUEST = "DELETE_LIST_REQUEST";
 export const DELETE_LIST_SUCCESS = "DELETE_LIST_SUCCESS";
@@ -34,6 +41,19 @@ const reducer = (state = initialState, action) => {
       case LOAD_LISTS_FAILURE:
         draft.loadListsLoading = false;
         draft.loadListsError = action.error;
+        break;
+      case ADD_LISTS_REQUEST:
+        draft.addListsLoading = true;
+        draft.addListsError = null;
+        draft.addListsDone = false;
+        break;
+      case ADD_LISTS_SUCCESS:
+        draft.addListsLoading = false;
+        draft.addListsDone = true;
+        break;
+      case ADD_LISTS_FAILURE:
+        draft.addListsLoading = false;
+        draft.addListsError = action.error;
         break;
       case DELETE_LIST_REQUEST:
         draft.deleteListsLoading = true;
