@@ -10,7 +10,7 @@ const axios = require("axios");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public/videos/");
+    cb(null, "public/thumbnails/");
   },
   filename: function (req, file, cb) {
     const originalName = file.originalname;
@@ -24,11 +24,7 @@ router.post("/upload", upload.single("file"), async (req, res, next) => {
   try {
     const { originalname: file_name } = req.file;
     const decodeFileName = decodeURIComponent(file_name);
-    const { title: file_title } = req.body;
-    await VideoList.create({
-      file_name: decodeFileName,
-      file_title,
-    });
+
     res.status(201).send(`${decodeFileName} 등록 완료`);
   } catch (error) {
     console.error(error);
@@ -61,25 +57,10 @@ const getVideoTitle = async (videoId) => {
   }
 };
 
-// const getVideoTitleWithPuppeteer = async (videoId) => {
-//   const browser = await puppeteer.launch();
-//   const page = await browser.newPage();
-
-//   // YouTube 동영상 페이지 열기
-//   await page.goto(`https://www.youtube.com/watch?v=${videoId}`);
-
-//   // 동영상 제목 가져오기
-//   const title = await page.$eval('meta[property="og:title"]', (element) => element.getAttribute('content'));
-
-//   await browser.close();
-
-//   return title;
-// };
-
 router.post("/add", async (req, res, next) => {
   try {
-    for (let i = 0; i < req.body.length; i++) {
-      videoId = req.body[i].match(/[?&]v=([^&]+)/)[1];
+    for (let i = 0; i < req.body.urls.length; i++) {
+      videoId = req.body.urls[i].match(/[?&]v=([^&]+)/)[1];
       let videoTitle;
       try {
         videoTitle = await getVideoTitle(videoId);
@@ -89,7 +70,8 @@ router.post("/add", async (req, res, next) => {
       await VideoList.create({
         file_id: videoId,
         file_title: videoTitle,
-        file_url: req.body[i],
+        file_url: req.body.urls[i],
+        thumbnail_src: req.body.thumbnailSrcs[i],
       });
     }
   } catch (error) {
@@ -107,8 +89,8 @@ router.post("/delete", async (req, res, next) => {
       __dirname,
       "..",
       "public",
-      "videos",
-      `${req.body.fileName}`
+      "thumbnails",
+      `${req.body.src}`
     );
     fs.unlink(filePath, (err) => {
       if (err) {

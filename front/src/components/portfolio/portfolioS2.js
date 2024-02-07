@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LOAD_LISTS_REQUEST } from "../../reducers/videoList";
+import YouTube from "react-youtube";
+
 const PortfolioS2 = () => {
   const dispatch = useDispatch();
   const [showPopup, setShowPopup] = useState(false);
@@ -21,7 +23,7 @@ const PortfolioS2 = () => {
               return (
                 <div className="video_box" key={index}>
                   <div className="video">
-                    <img src="/images/portfolio_s2_img.jpg" alt="" />
+                    <img src={`/thumbnails/${list.thumbnail_src}`} alt="" />
                     <img
                       src="/images/play_btn.png"
                       alt=""
@@ -53,14 +55,21 @@ const PortfolioS2 = () => {
               onClick={() => {
                 setCurrentVideo(currentVideo - 1);
               }}
-              // style={{ display: currentVideo === 0 ? "none" : "" }}
             />
             <div className="video_box">
-              <video
-                src={`/videos/${lists[currentVideo].file_name}`}
-                alt=""
-                autoPlay
-                controls
+              <YouTube
+                videoId={lists[currentVideo].file_id}
+                opts={{
+                  playerVars: {
+                    autoplay: 1,
+                    rel: 0,
+                    modestbranding: 1,
+                  },
+                }}
+                onEnd={(e) => {
+                  e.target.stopVideo(0);
+                }}
+                style={{}}
               />
             </div>
             <img

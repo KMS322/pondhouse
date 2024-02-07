@@ -1,5 +1,5 @@
 .adminUploadForm {
-  width: 42.45vw;
+  width: 48vw;
   height: auto;
   position: fixed;
   top: 50%;
@@ -14,9 +14,17 @@
 .adminUploadForm .form_container {
   width: 86.38%;
   height: auto;
+  max-height: 35vw;
+  overflow-y: scroll;
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: space-between;
+}
+.adminUploadForm .form_container .input_container {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 1.5vw;
 }
 .adminUploadForm img {
   width: 1.18vw;
@@ -26,32 +34,37 @@
   cursor: pointer;
 }
 .adminUploadForm .form_container input {
-  width: 80%;
+  width: 100%;
   height: 2.5vw;
   font-size: 1.15vw;
   padding-left: 0.5vw;
-  margin-top: 1vw;
   color: #707070;
 }
-.adminUploadForm .form_container .upload_btn {
+.adminUploadForm .form_container .label_container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  margin-top: 0.5vw;
 }
-.adminUploadForm .form_container label {
+.adminUploadForm .form_container .label_container label {
   width: 15%;
-  height: 1.5vw;
-  align-self: flex-start;
-  margin-top: 1vw;
+  margin: 0;
+  margin-right: 1vw;
 }
-.adminUploadForm .form_container label .upload_btn {
-  width: 15%;
-  height: 1.5vw;
-  margin-top: 1vw;
+.adminUploadForm .form_container .label_container label .upload_btn {
+  width: 100%;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
 }
-.adminUploadForm .form_container input:nth-child(3) {
+.adminUploadForm .form_container .label_container input:nth-child(2) {
   display: none;
+}
+.adminUploadForm .form_container .label_container > p {
+  width: 80%;
+  font-size: 1.04vw;
 }
 .adminUploadForm .btn_box {
   width: 11vw;

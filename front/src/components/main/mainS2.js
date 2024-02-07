@@ -11,6 +11,7 @@ const MainS2 = () => {
       type: LOAD_LISTS_REQUEST,
     });
   }, []);
+
   return (
     <div className="main_s2">
       <p>PORTFOLIO</p>
@@ -22,27 +23,16 @@ const MainS2 = () => {
             setCurrentVideo(currentVideo - 1);
           }}
         />
-        {/* <video
-          src={`/videos/${lists && lists[currentVideo].file_name}`}
-          alt=""
-          controls
-          muted
-          autoPlay
-        /> */}
         <div className="youtube_box">
           <YouTube
-            //videoId : https://www.youtube.com/watch?v={videoId} 유튜브 링크의 끝부분에 있는 고유한 아이디
-            videoId="Npm1McQBDEM"
-            //opts(옵션들): 플레이어의 크기나 다양한 플레이어 매개 변수를 사용할 수 있음.
-            //밑에서 더 설명하겠습니다.
+            videoId={lists && lists[currentVideo].file_id}
             opts={{
               playerVars: {
-                autoplay: 1, //자동재생 O
-                rel: 0, //관련 동영상 표시하지 않음 (근데 별로 쓸모 없는듯..)
-                modestbranding: 1, // 컨트롤 바에 youtube 로고를 표시하지 않음
+                autoplay: 1,
+                rel: 0,
+                modestbranding: 1,
               },
             }}
-            //이벤트 리스너
             onEnd={(e) => {
               e.target.stopVideo(0);
             }}
