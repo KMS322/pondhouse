@@ -9,11 +9,11 @@ const AdminUploadForm = ({ handlePopup }) => {
   const [urls, setUrls] = useState([""]);
   const [thumbnails, setThumbnails] = useState(Array(urls.length).fill(null));
   const { addListsDone, lists } = useSelector((state) => state.videoList);
-  useEffect(() => {
-    if (addListsDone) {
-      window.location.reload();
-    }
-  }, [lists]);
+  // useEffect(() => {
+  //   if (addListsDone) {
+  //     window.location.reload();
+  //   }
+  // }, [lists]);
   const handleInput = (e, index) => {
     const newUrls = [...urls];
     newUrls[index] = e.target.value;

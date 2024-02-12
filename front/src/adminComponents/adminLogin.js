@@ -1,8 +1,11 @@
 import "../css/adminLogin.css";
-import SubHeader from "./adminSubHeader";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { LOG_IN_REQUEST } from "../reducers/user";
 const AdminLogin = () => {
+  const dispatch = useDispatch();
+  const { logInDone, me } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [adminId, setAdminId] = useState("");
   const [adminPw, setAdminPw] = useState("");
@@ -13,15 +16,21 @@ const AdminLogin = () => {
     setAdminPw(e.target.value);
   };
   const submit = () => {
-    if (adminId === "admin" && adminPw === "admin") {
-      navigate("/main");
-    } else {
-      alert("아이디 혹은 비밀번호가 틀렸습니다.");
-    }
+    dispatch({
+      type: LOG_IN_REQUEST,
+      data: {
+        adminId,
+        adminPw,
+      },
+    });
   };
+  useEffect(() => {
+    if (logInDone) {
+      navigate("/adminMain", { state: { me } });
+    }
+  }, [logInDone]);
   return (
     <>
-      <SubHeader />
       <div className="adminLogin">
         <p>로그인</p>
         <div className="input_box">
@@ -39,6 +48,16 @@ const AdminLogin = () => {
             placeholder="비밀번호"
             onChange={onChangePw}
           />
+        </div>
+        <div className="text_box">
+          <p
+            onClick={() => {
+              navigate("/adminSignup");
+            }}
+          >
+            관리자 계정 가입
+          </p>
+          {/* <p>비밀번호 찾기/변경</p> */}
         </div>
         <div className="btn" onClick={submit}>
           로그인

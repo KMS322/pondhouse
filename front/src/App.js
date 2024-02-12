@@ -10,6 +10,7 @@ import Portfolio from "./components/portfolio/portfolio.js";
 import Contact from "./components/contact/contact.js";
 import Admin from "./adminComponents/admin.js";
 import AdminLogin from "./adminComponents/adminLogin.js";
+import AdminSignup from "./adminComponents/adminSignup.js";
 function App() {
   const [currentPage, setCurrentPage] = useState();
   const location = useLocation();
@@ -24,8 +25,9 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/adminLogin" element={<AdminLogin />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/adminSignup" element={<AdminSignup />} />
+        <Route path="/adminMain" element={<Admin />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>

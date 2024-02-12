@@ -74,6 +74,7 @@ router.post("/add", async (req, res, next) => {
         thumbnail_src: req.body.thumbnailSrcs[i],
       });
     }
+    res.status(200).send("ok");
   } catch (error) {
     console.error(error);
     next();
