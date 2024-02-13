@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { LOG_IN_REQUEST } from "../reducers/user";
 const AdminLogin = () => {
   const dispatch = useDispatch();
-  const { logInDone, me } = useSelector((state) => state.user);
+  const { logInDone, me, logInError } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [adminId, setAdminId] = useState("");
   const [adminPw, setAdminPw] = useState("");
@@ -29,6 +29,13 @@ const AdminLogin = () => {
       navigate("/adminMain", { state: { me } });
     }
   }, [logInDone]);
+  useEffect(() => {
+    if (logInError) {
+      alert(logInError);
+      setAdminId("");
+      setAdminPw("");
+    }
+  }, [logInError]);
   return (
     <>
       <div className="adminLogin">

@@ -24,4 +24,19 @@
   .portfolio_s2 .article_container .video_box p {
     font-size: 2.5vw;
   }
+  .video_popup > img {
+    width: 7vw;
+    top: 8vw;
+    right: 6vw;
+  }
+  .video_popup .article_container {
+    width: 100%;
+  }
+  .video_popup .article_container > img {
+    display: none;
+  }
+  .video_popup .article_container .video_box {
+    width: 100vw;
+    height: 56.25vw;
+  }
 }

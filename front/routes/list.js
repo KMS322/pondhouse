@@ -6,7 +6,6 @@ const fs = require("fs");
 const path = require("path");
 const cheerio = require("cheerio");
 const axios = require("axios");
-// const puppeteer = require("puppeteer");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

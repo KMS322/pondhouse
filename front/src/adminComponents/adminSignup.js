@@ -1,12 +1,10 @@
 import "../css/adminSignup.css";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SIGN_UP_REQUEST } from "../reducers/user";
 const AdminSignup = () => {
   const dispatch = useDispatch();
   const { signUpDone } = useSelector((state) => state.user);
-  const navigate = useNavigate();
   const [adminId, setAdminId] = useState("");
   const [adminPw, setAdminPw] = useState("");
   const [adminPwCheck, setAdminPwCheck] = useState("");
@@ -20,6 +18,10 @@ const AdminSignup = () => {
     setAdminPwCheck(e.target.value);
   };
   const submit = () => {
+    if (adminPw !== adminPwCheck) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
     dispatch({
       type: SIGN_UP_REQUEST,
       data: {

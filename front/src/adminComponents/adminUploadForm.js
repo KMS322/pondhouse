@@ -8,12 +8,7 @@ const AdminUploadForm = ({ handlePopup }) => {
   const dispatch = useDispatch();
   const [urls, setUrls] = useState([""]);
   const [thumbnails, setThumbnails] = useState(Array(urls.length).fill(null));
-  const { addListsDone, lists } = useSelector((state) => state.videoList);
-  // useEffect(() => {
-  //   if (addListsDone) {
-  //     window.location.reload();
-  //   }
-  // }, [lists]);
+
   const handleInput = (e, index) => {
     const newUrls = [...urls];
     newUrls[index] = e.target.value;
@@ -41,6 +36,25 @@ const AdminUploadForm = ({ handlePopup }) => {
     const thumbnailSrcs = thumbnails
       .filter((thumbnail) => thumbnail)
       .map((thumbnail) => thumbnail.name);
+    for (let i = 0; i < urls.length; i++) {
+      if (!urls[i]) {
+        alert(`${i + 1}번째 URL을 입력해주세요.`);
+        return;
+      }
+      const videoId = urls[i].match(/[?&]v=([^&]+)/)[1];
+      console.log("videoId : ", videoId);
+      if (!videoId) {
+        alert(`${i + 1}번째 URL을 확인해주세요.`);
+        return;
+      }
+    }
+
+    for (let i = 0; i < thumbnails.length; i++) {
+      if (!thumbnails[i]) {
+        alert(`${i + 1}번째 썸네일 이미지가 등록되지 않았습니다.`);
+        return;
+      }
+    }
     dispatch({
       type: ADD_LISTS_REQUEST,
       data: { urls, thumbnailSrcs },

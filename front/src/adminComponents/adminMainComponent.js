@@ -31,26 +31,31 @@ const AdminMainComponent = () => {
       },
     });
   };
-  // useEffect(() => {
-  //   if (deleteListDone) {
-  //     window.location.href = "/adminMain";
-  //   }
-  // }, [deleteListDone]);
-  // useEffect(() => {
-  //   if (addListsLoading) {
-  //     setLoadingMsg("loading");
-  //     setOpenLoading(true);
-  //     setOpenForm(false);
-  //   } else if (addListsDone) {
-  //     setLoadingMsg("done");
-  //     setOpenLoading(true);
-  //     const timeoutId = setTimeout(() => {
-  //       setOpenLoading(false);
-  //       window.location.href = "/adminMain";
-  //     }, 2000);
-  //     return () => clearTimeout(timeoutId);
-  //   }
-  // }, [addListsLoading, addListsDone]);
+  useEffect(() => {
+    if (addListsDone) {
+      window.location.href = "/adminMain";
+    }
+  }, [addListsDone, lists]);
+  useEffect(() => {
+    if (deleteListDone) {
+      window.location.href = "/adminMain";
+    }
+  }, [deleteListDone]);
+  useEffect(() => {
+    if (addListsLoading) {
+      setLoadingMsg("loading");
+      setOpenLoading(true);
+      setOpenForm(false);
+    } else if (addListsDone) {
+      setLoadingMsg("done");
+      setOpenLoading(true);
+      const timeoutId = setTimeout(() => {
+        setOpenLoading(false);
+        window.location.href = "/adminMain";
+      }, 2000);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [addListsLoading, addListsDone]);
   return (
     <>
       {me && me === "admin" ? (

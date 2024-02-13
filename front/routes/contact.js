@@ -4,7 +4,6 @@ const nodemailer = require("nodemailer");
 
 router.post("/", async (req, res, next) => {
   try {
-    console.log("req.body : ", req.body);
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
