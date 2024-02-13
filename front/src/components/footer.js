@@ -64,7 +64,9 @@ const Footer = () => {
           <p>대구광역시 동구 경안로 722 3층 STUDIOFROG</p>
           <div className="insta_box">
             <img src="/images/insta.png" alt="" />
-            <p>INSTA film_pond_house</p>
+            <a href="https://www.instagram.com/film_pond_house/">
+              <p>INSTA film_pond_house</p>
+            </a>
           </div>
         </div>
       </div>

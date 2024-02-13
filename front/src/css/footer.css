@@ -81,5 +81,7 @@
   cursor: pointer;
 }
 .footer .article_container .info_box .insta_box p {
+  font-size: 0.62vw;
   cursor: pointer;
+  color: black;
 }
