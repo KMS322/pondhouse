@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SEND_EMAIL_REQUEST } from "../../reducers/contact";
+import { SEND_KAKAO_REQUEST } from "../../reducers/kakao";
 import Modal from "./modal";
 const ContactS1 = () => {
   const { sendEmailDone } = useSelector((state) => state.contact);
@@ -76,9 +77,24 @@ const ContactS1 = () => {
       setModalMsg("unChecked");
       setModalOpen(true);
     } else {
+      // dispatch(
+      //   {
+      //     type: SEND_EMAIL_REQUEST,
+      //     data: {
+      //       name,
+      //       tel,
+      //       day,
+      //       time,
+      //       selectedTime,
+      //       location,
+      //       content,
+      //     },
+      //   },
+      //   [name, tel, day, time, selectedTime, location, content]
+      // );
       dispatch(
         {
-          type: SEND_EMAIL_REQUEST,
+          type: SEND_KAKAO_REQUEST,
           data: {
             name,
             tel,

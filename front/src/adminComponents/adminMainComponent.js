@@ -3,9 +3,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { LOAD_LISTS_REQUEST, DELETE_LIST_REQUEST } from "../reducers/videoList";
+import { LOAD_KAKAO_REQUEST } from "../reducers/kakao";
 import UploadForm from "./adminUploadForm";
 import Loading from "./loading";
-
+import { API_URL } from "../constants";
 const AdminMainComponent = () => {
   const location = useLocation();
   const me = location.state && location.state.me;
@@ -14,9 +15,14 @@ const AdminMainComponent = () => {
   const { lists, addListsDone, deleteListDone, addListsLoading } = useSelector(
     (state) => state.videoList
   );
+  const { kakao } = useSelector((state) => state.kakao);
   const [openLoading, setOpenLoading] = useState(false);
   const [loadingMsg, setLoadingMsg] = useState("");
-
+  useEffect(() => {
+    dispatch({
+      type: LOAD_KAKAO_REQUEST,
+    });
+  }, []);
   useEffect(() => {
     dispatch({
       type: LOAD_LISTS_REQUEST,
@@ -58,6 +64,14 @@ const AdminMainComponent = () => {
   }, [addListsLoading, addListsDone]);
   return (
     <>
+      {kakao && kakao ? (
+        ""
+      ) : (
+        <div className="kakao_btn">
+          <a href={`${API_URL}/kakao/authorize?scope=talk_message`}>코드발급</a>
+        </div>
+      )}
+
       {me && me === "admin" ? (
         <div className="adminMain">
           <div className="upload_btn">

@@ -1,4 +1,16 @@
 /* adminMain */
+.kakao_btn {
+  width: 5vw;
+  height: 2vw;
+  background-color: yellow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 8vw;
+  left: 0.5vw;
+}
 .adminMain {
   width: 88.85%;
   height: auto;

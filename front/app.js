@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const userRouter = require("./routes/user");
 const listRouter = require("./routes/list");
 const contactRouter = require("./routes/contact");
+const kakaoRouter = require("./routes/kakao");
 const db = require("./models");
 const passportConfig = require("./passport");
 
@@ -55,6 +56,7 @@ app.get("/", (req, res) => {
 app.use("/user", userRouter);
 app.use("/list", listRouter);
 app.use("/contact", contactRouter);
+app.use("/kakao", kakaoRouter);
 // app.use((err, req, res, next) => {
 //   // 에러 처리 미들웨어
 // });
