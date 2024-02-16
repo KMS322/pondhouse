@@ -11,7 +11,7 @@ import Contact from "./components/contact/contact.js";
 import Admin from "./adminComponents/admin.js";
 import AdminLogin from "./adminComponents/adminLogin.js";
 import AdminSignup from "./adminComponents/adminSignup.js";
-import DemoClient from "./demoClient.js";
+import DemoClient from "./demoClient_copy.js";
 function App() {
   const [currentPage, setCurrentPage] = useState();
   const location = useLocation();
