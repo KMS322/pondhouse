@@ -7,17 +7,21 @@ const path = require("path");
 const cheerio = require("cheerio");
 const axios = require("axios");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "public/thumbnails/");
+const folderPath = path.join(__dirname, "public", "thumbnails");
+const folderPath2 = path.join(__dirname, "..", "public", "thumbnails");
+if (!fs.existsSync(folderPath2)) {
+  fs.mkdirSync(folderPath2);
+}
+var Storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, folderPath);
   },
-  filename: function (req, file, cb) {
-    const originalName = file.originalname;
-    cb(null, decodeURIComponent(originalName));
+  filename: function (req, file, callback) {
+    callback(null, file.originalname);
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage: Storage });
 
 router.post("/upload", upload.single("file"), async (req, res, next) => {
   try {
