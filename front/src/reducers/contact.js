@@ -14,7 +14,7 @@ const reducer = (state = initialState, action) => {
   return produce(state, (draft) => {
     switch (action.type) {
       case SEND_EMAIL_REQUEST:
-        draft.sendEamilLoading = true;
+        draft.sendEmailLoading = true;
         draft.sendEmaiError = null;
         draft.sendEmailDone = false;
         break;

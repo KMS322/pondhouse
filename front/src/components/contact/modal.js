@@ -1,7 +1,6 @@
 import "../../css/modal.css";
 
 const Modal = ({ data }) => {
-  console.log("data : ", data);
   return (
     <div className="modal">
       {data === "success" ? (
@@ -16,6 +15,14 @@ const Modal = ({ data }) => {
             미기입 된 항목이 있습니다.
             <br />
             항목을 기입하고 다시 시도해 주세요.
+          </p>
+        </>
+      ) : data === "loading" ? (
+        <>
+          <img src="/images/icon_fail.png" alt="" />
+          <p>
+            메일을 보내는 중 입니다. <br />
+            잠시만 기다려 주세요.
           </p>
         </>
       ) : (

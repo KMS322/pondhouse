@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SEND_EMAIL_REQUEST } from "../../reducers/contact";
-import { SEND_KAKAO_REQUEST } from "../../reducers/kakao";
 import Modal from "./modal";
 const ContactS1 = () => {
-  const { sendEmailDone } = useSelector((state) => state.contact);
+  const { sendEmailDone, sendEmailLoading } = useSelector(
+    (state) => state.contact
+  );
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
@@ -25,7 +26,7 @@ const ContactS1 = () => {
   }, [sendEmailDone]);
 
   useEffect(() => {
-    if (modalOpen) {
+    if (modalOpen && modalMsg === "success") {
       const timeoutId = setTimeout(() => {
         setModalOpen(false);
 
@@ -37,6 +38,13 @@ const ContactS1 = () => {
       return () => clearTimeout(timeoutId);
     }
   }, [modalOpen, modalMsg]);
+
+  useEffect(() => {
+    if (sendEmailLoading) {
+      setModalMsg("loading");
+      setModalOpen(true);
+    }
+  }, [sendEmailLoading]);
   const handleInput = (e, inputType) => {
     const value = e.target.value;
     if (inputType === "name") {
@@ -77,24 +85,9 @@ const ContactS1 = () => {
       setModalMsg("unChecked");
       setModalOpen(true);
     } else {
-      // dispatch(
-      //   {
-      //     type: SEND_EMAIL_REQUEST,
-      //     data: {
-      //       name,
-      //       tel,
-      //       day,
-      //       time,
-      //       selectedTime,
-      //       location,
-      //       content,
-      //     },
-      //   },
-      //   [name, tel, day, time, selectedTime, location, content]
-      // );
       dispatch(
         {
-          type: SEND_KAKAO_REQUEST,
+          type: SEND_EMAIL_REQUEST,
           data: {
             name,
             tel,

@@ -9,8 +9,8 @@ router.post("/", async (req, res, next) => {
       port: 587,
       secure: false,
       auth: {
-        user: "creamoff2021@gmail.com",
-        pass: "ktdldgctfcczdfmy",
+        user: "sooljoo94@gmail.com",
+        pass: "ancdsehxwluuoili",
       },
       tls: {
         rejectUnauthorized: false,
@@ -19,6 +19,7 @@ router.post("/", async (req, res, next) => {
 
     const mailOptions = {
       from: req.body.name,
+      // to: "studioofrog@gmail.com",
       to: "kms930322@naver.com",
       subject: `PONDHOUSE WEB CONTACT By ${req.body.name}`,
       html: `<html><body>
