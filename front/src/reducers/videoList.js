@@ -56,18 +56,18 @@ const reducer = (state = initialState, action) => {
         draft.addListsError = action.error;
         break;
       case DELETE_LIST_REQUEST:
-        draft.deleteListsLoading = true;
-        draft.deleteListsError = null;
-        draft.deleteListsDone = false;
+        draft.deleteListLoading = true;
+        draft.deleteListError = null;
+        draft.deleteListDone = false;
         break;
       case DELETE_LIST_SUCCESS:
-        draft.deleteListsLoading = false;
+        draft.deleteListLoading = false;
         draft.lists = draft.lists.filter((item) => item.id !== action.data.id);
-        draft.deleteListsDone = true;
+        draft.deleteListDone = true;
         break;
       case DELETE_LIST_FAILURE:
-        draft.deleteListsLoading = false;
-        draft.deleteListsError = action.error;
+        draft.deleteListLoading = false;
+        draft.deleteListError = action.error;
         break;
       default:
         return state;
