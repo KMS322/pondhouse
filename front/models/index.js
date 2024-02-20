@@ -12,7 +12,6 @@ const sequelize = new Sequelize(
 
 db.User = require("./user")(sequelize, Sequelize);
 db.VideoList = require("./videoList")(sequelize, Sequelize);
-db.Kakao = require("./kakao")(sequelize, Sequelize);
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {

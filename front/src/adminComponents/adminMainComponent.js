@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 import { LOAD_LISTS_REQUEST, DELETE_LIST_REQUEST } from "../reducers/videoList";
 import UploadForm from "./adminUploadForm";
 import Loading from "./loading";
-import { API_URL } from "../constants";
 const AdminMainComponent = () => {
   const location = useLocation();
   const me = location.state && location.state.me;
