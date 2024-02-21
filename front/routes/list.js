@@ -7,17 +7,23 @@ const path = require("path");
 const cheerio = require("cheerio");
 const axios = require("axios");
 
-const folderPath = path.join(__dirname, "public", "thumbnails");
-const folderPath2 = path.join(__dirname, "..", "public", "thumbnails");
-if (!fs.existsSync(folderPath2)) {
-  fs.mkdirSync(folderPath2);
+const folderPath = path.join(__dirname, "..", "public", "thumbnails");
+if (!fs.existsSync(folderPath)) {
+  fs.mkdirSync(folderPath);
 }
-var Storage = multer.diskStorage({
+const Storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, folderPath);
+    callback(null, "public/thumbnails/");
   },
   filename: function (req, file, callback) {
-    callback(null, file.originalname);
+    const fileName = file.originalname;
+    const filePath = "public/thumbnails/" + fileName;
+
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+    }
+
+    callback(null, fileName);
   },
 });
 
@@ -86,6 +92,9 @@ router.post("/add", async (req, res, next) => {
 
 router.post("/delete", async (req, res, next) => {
   try {
+    const exData = await VideoList.findAll({
+      where: { thumbnail_src: req.body.src },
+    });
     const deletedData = await VideoList.destroy({
       where: { id: req.body.id },
     });
@@ -96,15 +105,19 @@ router.post("/delete", async (req, res, next) => {
       "thumbnails",
       `${req.body.src}`
     );
-    fs.unlink(filePath, (err) => {
-      if (err) {
-        console.error("Error deleting file:", err);
-        return res.status(500).send("Internal Server Error");
-      }
-      console.log("File deleted successfully");
-      const deletedId = req.body.id;
+    const deletedId = req.body.id;
+    if (exData.length > 1) {
       res.status(200).json({ id: deletedId });
-    });
+    } else {
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.error("Error deleting file:", err);
+          return res.status(500).send("Internal Server Error");
+        }
+        console.log("File deleted successfully");
+        res.status(200).json({ id: deletedId });
+      });
+    }
   } catch (error) {
     console.error(error);
     next();
