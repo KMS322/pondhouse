@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const { User } = require("../models");
-const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
+const { isNotLoggedIn } = require("./middlewares");
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
@@ -22,6 +22,7 @@ router.get("/", async (req, res, next) => {
     next(error);
   }
 });
+
 router.post("/signup", isNotLoggedIn, async (req, res, next) => {
   try {
     const exUser = await User.findOne({
@@ -30,14 +31,15 @@ router.post("/signup", isNotLoggedIn, async (req, res, next) => {
       },
     });
     if (exUser) {
-      return res.status(403).send("이미 사용중인 아이디 입니다.");
+      return res.status(403).send("회원가입을 할 수 없습니다.");
+    } else {
+      const hashedPassword = await bcrypt.hash(req.body.adminPw, 12);
+      const createdUser = await User.create({
+        admin_id: req.body.adminId,
+        admin_pw: hashedPassword,
+      });
     }
-    const hashedPassword = await bcrypt.hash(req.body.adminPw, 12);
 
-    const createdUser = await User.create({
-      admin_id: req.body.adminId,
-      admin_pw: hashedPassword,
-    });
     res.status(201).send("ok");
   } catch (error) {
     console.error(error);

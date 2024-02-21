@@ -2,13 +2,11 @@ const express = require("express");
 const cors = require("cors");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
-const passport = require("passport");
 const dotenv = require("dotenv");
 const userRouter = require("./routes/user");
 const listRouter = require("./routes/list");
 const contactRouter = require("./routes/contact");
 const db = require("./models");
-const passportConfig = require("./passport");
 
 dotenv.config();
 const app = express();
@@ -16,15 +14,13 @@ const app = express();
 db.sequelize
   .sync()
   .then(() => {
-    console.log("db 연결 성공");
+    console.log("db connected");
   })
   .catch(console.err);
 
-passportConfig();
-
 app.use(
   cors({
-    origin: ["http://localhost", "http://115.85.183.166"],
+    origin: ["http://localhost", "http://pondhouse.kr"],
     credentials: true,
   })
 );
@@ -45,8 +41,6 @@ app.use(
     },
   })
 );
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.get("/", (req, res) => {
   res.send("server on");
@@ -55,9 +49,7 @@ app.get("/", (req, res) => {
 app.use("/user", userRouter);
 app.use("/list", listRouter);
 app.use("/contact", contactRouter);
-// app.use((err, req, res, next) => {
-//   // 에러 처리 미들웨어
-// });
+
 const port = 3060;
 app.listen(port, () => {
   console.log(`${port}에서 서버 실행 중`);

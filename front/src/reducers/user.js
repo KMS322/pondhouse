@@ -1,21 +1,12 @@
 import produce from "../util/produce";
 
 export const initialState = {
-  loadUserLoading: false,
-  loadUserDone: false,
-  loadUserError: null,
   logInLoading: false,
   logInDone: false,
   logInError: null,
-  logOutLoading: false,
-  logOutDone: false,
-  logOutError: null,
   signUpLoading: false,
   signUpDone: false,
   signUpError: null,
-  changePasswordLoading: false,
-  changePasswordDone: false,
-  changePasswordError: null,
   me: null,
 };
 

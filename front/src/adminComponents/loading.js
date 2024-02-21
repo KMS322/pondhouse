@@ -1,7 +1,6 @@
 import "../css/loading.css";
 
 const Loading = ({ data }) => {
-  console.log("data : ", data);
   return (
     <div className="loading">
       {data === "loading" ? (

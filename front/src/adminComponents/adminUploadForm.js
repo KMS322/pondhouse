@@ -47,7 +47,6 @@ const AdminUploadForm = ({ handlePopup }) => {
         return;
       }
       const videoId = urls[i].match(/[?&]v=([^&]+)/)[1];
-      console.log("videoId : ", videoId);
       if (!videoId) {
         alert(`${i + 1}번째 URL을 확인해주세요.`);
         return;
