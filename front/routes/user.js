@@ -1,7 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const { User } = require("../models");
-const { isNotLoggedIn } = require("./middlewares");
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
@@ -23,7 +22,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.post("/signup", isNotLoggedIn, async (req, res, next) => {
+router.post("/signup", async (req, res, next) => {
   try {
     const exUser = await User.findOne({
       where: {
@@ -47,7 +46,7 @@ router.post("/signup", isNotLoggedIn, async (req, res, next) => {
   }
 });
 
-router.post("/login", isNotLoggedIn, async (req, res, next) => {
+router.post("/login", async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
