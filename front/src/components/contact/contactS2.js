@@ -7,7 +7,13 @@ const ContactS2 = () => {
         </div>
         <div className="article">
           <div className="article_box article_box1">
-            <img src="/images/portfolio_s2_icon1.png" alt="" />
+            <a
+              href="https://map.naver.com/p/search/%EB%8C%80%EA%B5%AC%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%8F%99%EA%B5%AC%20%EA%B2%BD%EC%95%88%EB%A1%9C%20722/address/14328361.8319105,4282270.1433382,%EB%8C%80%EA%B5%AC%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%8F%99%EA%B5%AC%20%EA%B2%BD%EC%95%88%EB%A1%9C%20722,new?c=19.00,0,0,0,dh&isCorrectAnswer=true"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="/images/portfolio_s2_icon1.png" alt="" />
+            </a>
             <p>찾아오시는 길</p>
             <p>
               대구광역시 동구 경안로 722
@@ -26,7 +32,13 @@ const ContactS2 = () => {
         </div>
         <div className="article">
           <div className="article_box">
-            <img src="/images/portfolio_s2_icon3.png" alt="" />
+            <a
+              href="https://www.instagram.com/film_pond_house/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="/images/portfolio_s2_icon3.png" alt="" />
+            </a>
             <p>인스타그램</p>
             <p>film_pond_house</p>
           </div>
