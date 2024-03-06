@@ -10,7 +10,7 @@ module.exports = () => {
         passwordField: "adminPw",
         passReqToCallback: true,
       },
-      async (req, userID, userPW, done) => {
+      async (req, adminId, adminPw, done) => {
         try {
           const user = await User.findOne({
             where: { admin_id: adminId },
