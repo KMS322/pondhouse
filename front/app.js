@@ -64,5 +64,5 @@ app.use("/contact", contactRouter);
 
 const port = 3060;
 app.listen(port, () => {
-  console.log(`${port}에서 서버 실행 중`);
+  console.log(`server on ${port}`);
 });

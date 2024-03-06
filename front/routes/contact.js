@@ -4,25 +4,25 @@ const nodemailer = require("nodemailer");
 
 router.post("/", async (req, res, next) => {
   try {
-    // const transporter = nodemailer.createTransport({
-    //   host: "smtp.gmail.com",
-    //   port: 587,
-    //   secure: false,
-    //   auth: {
-    //     // user: "sooljoo94@gmail.com",
-    //     // pass: "ancdsehxwluuoili",
-    //     user: "creamoff2021@gmail.com",
-    //     pass: "ktdldgctfcczdfmy",
-    //   },
-    //   tls: {
-    //     rejectUnauthorized: false,
-    //   },
-    // });
     const transporter = nodemailer.createTransport({
-      host: "localhost",
+      host: "smtp.gmail.com",
       port: 25,
       secure: false,
+      auth: {
+        // user: "sooljoo94@gmail.com",
+        // pass: "ancdsehxwluuoili",
+        user: "creamoff2021@gmail.com",
+        pass: "ktdldgctfcczdfmy",
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
     });
+    // const transporter = nodemailer.createTransport({
+    //   host: "localhost",
+    //   port: 25,
+    //   secure: false,
+    // });
 
     const mailOptions = {
       from: req.body.name,
