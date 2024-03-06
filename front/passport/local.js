@@ -6,19 +6,19 @@ module.exports = () => {
   passport.use(
     new LocalStrategy(
       {
-        usernameField: "userID",
-        passwordField: "userPW",
+        usernameField: "adminId",
+        passwordField: "adminPw",
         passReqToCallback: true,
       },
       async (req, userID, userPW, done) => {
         try {
           const user = await User.findOne({
-            where: { user_id: userID },
+            where: { admin_id: adminId },
           });
           if (!user) {
             return done(null, false, { reason: "존재하지 않는 사용자입니다." });
           }
-          const result = await bcrypt.compare(userPW, user.user_pw);
+          const result = await bcrypt.compare(adminPw, user.admin_pw);
           if (result) {
             return done(null, user);
           }

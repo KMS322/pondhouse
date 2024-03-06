@@ -1,6 +1,8 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const passport = require("passport");
 const { User } = require("../models");
+const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
@@ -22,7 +24,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.post("/signup", async (req, res, next) => {
+router.post("/signup", isNotLoggedIn, async (req, res, next) => {
   try {
     const exUser = await User.findOne({
       where: {
@@ -46,26 +48,50 @@ router.post("/signup", async (req, res, next) => {
   }
 });
 
-router.post("/login", async (req, res, next) => {
-  try {
-    const user = await User.findOne({
-      where: {
-        admin_id: req.body.adminId,
-      },
+// router.post("/login", async (req, res, next) => {
+//   try {
+//     const user = await User.findOne({
+//       where: {
+//         admin_id: req.body.adminId,
+//       },
+//     });
+//     if (!user) {
+//       res.status(300).send("등록된 아이디가 아닙니다.");
+//     }
+//     const result = await bcrypt.compare(req.body.adminPw, user.admin_pw);
+//     if (result) {
+//       res.status(200).json(user);
+//     } else {
+//       res.status(401).send("비밀번호가 틀렸습니다.");
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     next();
+//   }
+// });
+
+router.post("/login", isNotLoggedIn, (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      console.error(err);
+      return next(err);
+    }
+    if (info) {
+      return res.status(401).send(info.reason);
+    }
+
+    return req.login(user, async (loginErr) => {
+      if (loginErr) {
+        console.error(loginErr);
+        return next(loginErr);
+      }
+      const fullUserWithoutPassword = await User.findOne({
+        where: { id: user.id },
+        attributes: ["admin_id"],
+      });
+      return res.status(200).json(fullUserWithoutPassword);
     });
-    if (!user) {
-      res.status(300).send("등록된 아이디가 아닙니다.");
-    }
-    const result = await bcrypt.compare(req.body.adminPw, user.admin_pw);
-    if (result) {
-      res.status(200).json(user);
-    } else {
-      res.status(401).send("비밀번호가 틀렸습니다.");
-    }
-  } catch (error) {
-    console.error(error);
-    next();
-  }
+  })(req, res, next);
 });
 
 module.exports = router;
