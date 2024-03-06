@@ -20,7 +20,11 @@ db.sequelize
 
 app.use(
   cors({
-    origin: ["http://localhost", "http://pondhouse.kr"],
+    origin: [
+      "http://localhost",
+      "http://pondhouse.kr",
+      "http://211.110.229.108",
+    ],
     credentials: true,
   })
 );
