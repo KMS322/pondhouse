@@ -18,11 +18,6 @@ router.post("/", async (req, res, next) => {
         rejectUnauthorized: false,
       },
     });
-    // const transporter = nodemailer.createTransport({
-    //   host: "localhost",
-    //   port: 25,
-    //   secure: false,
-    // });
 
     const mailOptions = {
       from: req.body.name,
