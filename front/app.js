@@ -35,9 +35,7 @@ app.use(
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(cookieParser(process.env.COOKIE_SECRET));
+
 app.use(
   session({
     saveUninitialized: false,
@@ -51,6 +49,10 @@ app.use(
     },
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
 app.get("/", (req, res) => {
   res.send("server on");
