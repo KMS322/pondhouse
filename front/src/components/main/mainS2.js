@@ -26,7 +26,7 @@ const MainS2 = () => {
           />
           <div className="youtube_box">
             <YouTube
-              videoId={lists && lists[currentVideo].file_id}
+              videoId={lists && lists.length > 0 && lists[currentVideo].file_id}
               opts={{
                 playerVars: {
                   autoplay: 1,
