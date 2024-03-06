@@ -4,14 +4,13 @@ import { LOAD_LISTS_REQUEST } from "../../reducers/videoList";
 import YouTube from "react-youtube";
 const MainS2 = () => {
   const dispatch = useDispatch();
-  const [currentVideo, setCurrentVideo] = useState(1);
+  const [currentVideo, setCurrentVideo] = useState(0);
   const { lists } = useSelector((state) => state.videoList);
   useEffect(() => {
     dispatch({
       type: LOAD_LISTS_REQUEST,
     });
   }, []);
-
   return (
     <div className="main_s2">
       <p>PORTFOLIO</p>
@@ -26,7 +25,7 @@ const MainS2 = () => {
           />
           <div className="youtube_box">
             <YouTube
-              videoId={lists && lists.length > 0 && lists[currentVideo].file_id}
+              videoId={lists[currentVideo].file_id}
               opts={{
                 playerVars: {
                   autoplay: 1,
