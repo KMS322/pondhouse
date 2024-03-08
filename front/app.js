@@ -24,11 +24,7 @@ passportConfig();
 
 app.use(
   cors({
-    origin: [
-      "http://localhost",
-      "http://pondhouse.kr",
-      "http://211.110.229.108",
-    ],
+    origin: ["http://localhost", "http://pondhouse.kr"],
     credentials: true,
   })
 );

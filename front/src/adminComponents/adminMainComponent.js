@@ -57,7 +57,7 @@ const AdminMainComponent = () => {
   }, [addListsLoading, addListsDone]);
   return (
     <>
-      {me && me === "ganstar95" ? (
+      {(me && me === "ganstar95") || me === "admin" ? (
         <div className="adminMain">
           <div className="upload_btn">
             <p

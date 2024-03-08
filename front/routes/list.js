@@ -17,13 +17,14 @@ const Storage = multer.diskStorage({
   },
   filename: function (req, file, callback) {
     const fileName = file.originalname;
+    const decodedFileName = decodeURIComponent(file.originalname);
     const filePath = "public/thumbnails/" + fileName;
 
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
     }
 
-    callback(null, fileName);
+    callback(null, decodedFileName);
   },
 });
 
@@ -33,6 +34,8 @@ router.post("/upload", upload.single("file"), async (req, res, next) => {
   try {
     const { originalname: file_name } = req.file;
     const decodeFileName = decodeURIComponent(file_name);
+    console.log("file_name : ", file_name);
+    console.log("decodeFileName : ", decodeFileName);
 
     res.status(201).send(`${decodeFileName} 등록 완료`);
   } catch (error) {
