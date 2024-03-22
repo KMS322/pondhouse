@@ -69,4 +69,7 @@
     height: 85%;
     margin-right: 2vw;
   }
+  .footer .article_container .info_box .insta_box p {
+    font-size: 2vw;
+  }
 }

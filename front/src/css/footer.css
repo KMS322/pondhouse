@@ -52,6 +52,7 @@
   height: 19.88%;
   font-size: 0.73vw;
   line-height: 1vw;
+  font-family: "BM";
 }
 .footer .article_container .info_box {
   width: 16.83%;
@@ -64,6 +65,7 @@
 .footer .article_container .info_box p {
   font-size: 0.62vw;
   text-align: right;
+  font-family: "BM";
 }
 .footer .article_container .info_box .num_box {
   display: flex;

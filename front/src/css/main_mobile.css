@@ -31,7 +31,8 @@
   .main_s2 .article_container {
     width: 90vw;
     height: 37.97vw;
-    margin-top: 7vw;
+    margin-top: 30vw;
+    margin-bottom: 30vw;
   }
   .main_s2 .article_container img:nth-child(2) {
     width: 80%;
@@ -51,7 +52,6 @@
   /* .main_s3 */
   .main_s3 {
     height: auto;
-    margin-top: 30vw;
     margin-bottom: 15vw;
   }
   .main_s3 .article_container {
@@ -71,6 +71,7 @@
   }
   .main_s3 .article_container .text_box > p:nth-child(2) {
     font-size: 2.5vw;
+    margin-top: 1vw;
   }
   .main_s3 .article_container .text_box .sub_text_box p {
     font-size: 4vw;

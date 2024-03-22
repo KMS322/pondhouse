@@ -15,7 +15,7 @@
   }
 }
 .main_s1 .text_box {
-  width: 19.5%;
+  width: 25%;
   height: 39.98%;
   margin-top: 11.93vw;
   margin-left: 14.48vw;
@@ -37,7 +37,7 @@
 }
 .main_s2 > p {
   font-size: 1.56vw;
-  font-family: "Muli";
+  font-family: "cour";
   margin-left: 23.7vw;
 }
 .main_s2 .article_container {
@@ -90,12 +90,12 @@
 }
 .main_s3 .article_container .text_box > p:nth-child(2) {
   font-size: 1.04vw;
-  font-family: "Muli";
+  font-family: "cour";
   margin-top: 0.36vw;
 }
 .main_s3 .article_container .text_box .sub_text_box {
   width: 100%;
-  height: 53.89%;
+  height: 75%;
   margin-top: 5.4vw;
   display: flex;
   flex-direction: column;
