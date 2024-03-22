@@ -22,8 +22,10 @@
   font-family: "cour";
 }
 .portfolio_s1 .text_box p:nth-child(2) {
-  line-height: 2.3vw;
+  font-size: 1.4vw;
+  line-height: 2.5vw;
   letter-spacing: -0.05vw;
+  margin-top: 2vw;
 }
 .portfolio_s1 .text_box p:nth-child(3) {
   line-height: 2.3vw;

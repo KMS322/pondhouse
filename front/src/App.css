@@ -30,10 +30,8 @@ button {
   user-select: none;
   cursor: pointer;
 }
-.pc {
-  display: block;
-}
-.mobile {
+
+#mobile {
   display: none;
 }
 @media (max-width: 500px) {
@@ -43,7 +41,7 @@ button {
   #pc {
     display: none;
   }
-  .mobile {
+  #mobile {
     display: block;
   }
   .nav {
