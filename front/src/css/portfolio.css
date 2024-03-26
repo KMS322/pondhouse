@@ -37,6 +37,7 @@
   width: 91.67%;
   height: 75.36vw;
   margin: 0 auto;
+  margin-top: 3.91vw;
   overflow-y: scroll;
 }
 .portfolio_s2 .article_container {
@@ -53,8 +54,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-right: 0.68vw;
-  margin-bottom: 1.77vw;
+  margin-right: 0.87vw;
+  margin-bottom: 3.91vw;
 }
 .portfolio_s2 .article_container .video_box:nth-child(4n) {
   margin-right: 0vw;

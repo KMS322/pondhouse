@@ -8,9 +8,11 @@ import Footer from "./components/footer.js";
 import Main from "./components/main/main.js";
 import Portfolio from "./components/portfolio/portfolio.js";
 import Contact from "./components/contact/contact.js";
-import Admin from "./adminComponents/admin.js";
+import AdminMain from "./adminComponents/adminMain.js";
 import AdminLogin from "./adminComponents/adminLogin.js";
 import AdminSignup from "./adminComponents/adminSignup.js";
+import AdminLists from "./adminComponents/adminLists.js";
+import AdminPopup from "./adminComponents/adminPopup.js";
 function App() {
   const [currentPage, setCurrentPage] = useState();
   const location = useLocation();
@@ -27,7 +29,9 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/adminSignup" element={<AdminSignup />} />
-        <Route path="/adminMain" element={<Admin />} />
+        <Route path="/adminMain" element={<AdminMain />} />
+        <Route path="/adminLists" element={<AdminLists />} />
+        <Route path="/adminPopup" element={<AdminPopup />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>

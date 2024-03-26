@@ -1,0 +1,23 @@
+/* eventPopup */
+.eventPopup {
+  width: auto;
+  height: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+.eventPopup img:first-child {
+  width: 0.7vw;
+  height: 0.7vw;
+  position: absolute;
+  top: 1vw;
+  right: 1vw;
+  cursor: pointer;
+}
+/* .eventPopup img:last-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+} */

@@ -10,6 +10,9 @@ import {
   ADD_LISTS_REQUEST,
   ADD_LISTS_SUCCESS,
   ADD_LISTS_FAILURE,
+  CHANGE_LISTS_REQUEST,
+  CHANGE_LISTS_SUCCESS,
+  CHANGE_LISTS_FAILURE,
 } from "../reducers/videoList";
 
 function loadListsAPI() {
@@ -52,6 +55,26 @@ function* addLists(action) {
   }
 }
 
+function changeListsAPI(data) {
+  return axios.post("/list/change", data);
+}
+
+function* changeLists(action) {
+  try {
+    const result = yield call(changeListsAPI, action.data);
+    yield put({
+      type: CHANGE_LISTS_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: CHANGE_LISTS_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
 function deleteListAPI(data) {
   return axios.post("/list/delete", data);
 }
@@ -80,10 +103,19 @@ function* watchaddlists() {
   yield takeLatest(ADD_LISTS_REQUEST, addLists);
 }
 
+function* watchchangelists() {
+  yield takeLatest(CHANGE_LISTS_REQUEST, changeLists);
+}
+
 function* watchdeletelist() {
   yield takeLatest(DELETE_LIST_REQUEST, deleteList);
 }
 
 export default function* videoListSaga() {
-  yield all([fork(watchloadLists), fork(watchdeletelist), fork(watchaddlists)]);
+  yield all([
+    fork(watchloadLists),
+    fork(watchdeletelist),
+    fork(watchchangelists),
+    fork(watchaddlists),
+  ]);
 }

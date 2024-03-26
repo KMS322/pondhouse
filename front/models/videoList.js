@@ -16,7 +16,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       thumbnail_src: {
         type: DataTypes.STRING(50),
-        allowNull: false,
+        allowNull: true,
+      },
+      order: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
       },
     },
     {

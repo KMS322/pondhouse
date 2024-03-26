@@ -37,6 +37,7 @@ const AdminMainComponent = () => {
   }, [addListsDone, lists]);
   useEffect(() => {
     if (deleteListDone) {
+      console.log("AA");
       window.location.href = "/adminMain";
     }
   }, [deleteListDone]);

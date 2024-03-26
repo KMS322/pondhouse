@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const userRouter = require("./routes/user");
 const listRouter = require("./routes/list");
 const contactRouter = require("./routes/contact");
+const popupRouter = require("./routes/popup");
 const db = require("./models");
 const passportConfig = require("./passport");
 
@@ -57,6 +58,7 @@ app.get("/", (req, res) => {
 app.use("/user", userRouter);
 app.use("/list", listRouter);
 app.use("/contact", contactRouter);
+app.use("/popup", popupRouter);
 
 const port = 3060;
 app.listen(port, () => {

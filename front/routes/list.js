@@ -79,14 +79,31 @@ router.post("/add", async (req, res, next) => {
       } catch (error) {
         console.error("Error: ", error);
       }
+      const videoLists = await VideoList.findAll();
+      const maxLength = videoLists.length;
       await VideoList.create({
         file_id: videoId,
         file_title: videoTitle,
         file_url: req.body.urls[i],
         thumbnail_src: req.body.thumbnailSrcs[i],
+        order: maxLength + 1,
       });
     }
     res.status(200).send("ok");
+  } catch (error) {
+    console.error(error);
+    next();
+  }
+});
+
+router.post("/change", async (req, res, next) => {
+  try {
+    for (const list of req.body.videoLists) {
+      await VideoList.update(
+        { order: list.order },
+        { where: { file_url: list.file_url } }
+      );
+    }
   } catch (error) {
     console.error(error);
     next();
@@ -109,18 +126,21 @@ router.post("/delete", async (req, res, next) => {
       `${req.body.src}`
     );
     const deletedId = req.body.id;
-    if (exData.length > 1) {
-      res.status(200).json({ id: deletedId });
-    } else {
-      fs.unlink(filePath, (err) => {
-        if (err) {
-          console.error("Error deleting file:", err);
-          return res.status(500).send("Internal Server Error");
-        }
-        console.log("File deleted successfully");
+    if (req.body.src) {
+      if (exData.length > 1) {
         res.status(200).json({ id: deletedId });
-      });
+      } else {
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.error("Error deleting file:", err);
+            return res.status(500).send("Internal Server Error");
+          }
+          console.log("File deleted successfully");
+          res.status(200).json({ id: deletedId });
+        });
+      }
     }
+    res.status(200).send("deleted");
   } catch (error) {
     console.error(error);
     next();

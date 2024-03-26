@@ -57,13 +57,13 @@ const AdminLogin = () => {
           />
         </div>
         <div className="text_box">
-          {/* <p
+          <p
             onClick={() => {
               navigate("/adminSignup");
             }}
           >
             관리자 계정 가입
-          </p> */}
+          </p>
           {/* <p>비밀번호 찾기/변경</p> */}
         </div>
         <div className="btn" onClick={submit}>

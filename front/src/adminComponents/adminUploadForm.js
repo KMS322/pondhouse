@@ -11,7 +11,7 @@ const AdminUploadForm = ({ handlePopup }) => {
   const [thumbnails, setThumbnails] = useState(Array(urls.length).fill(null));
   useEffect(() => {
     if (addListsDone) {
-      window.location.reload();
+      window.location.href = "/adminLists";
     }
   }, [lists]);
   const handleInput = (e, index) => {
@@ -53,12 +53,6 @@ const AdminUploadForm = ({ handlePopup }) => {
       }
     }
 
-    for (let i = 0; i < thumbnails.length; i++) {
-      if (!thumbnails[i]) {
-        alert(`${i + 1}번째 썸네일 이미지가 등록되지 않았습니다.`);
-        return;
-      }
-    }
     dispatch({
       type: ADD_LISTS_REQUEST,
       data: { urls, thumbnailSrcs },
@@ -66,18 +60,20 @@ const AdminUploadForm = ({ handlePopup }) => {
 
     try {
       for (let i = 0; i < thumbnails.length; i++) {
-        const formData = new FormData();
-        formData.append(
-          "file",
-          thumbnails[i],
-          encodeURIComponent(thumbnails[i].name)
-        );
+        if (thumbnails[i]) {
+          const formData = new FormData();
+          formData.append(
+            "file",
+            thumbnails[i],
+            encodeURIComponent(thumbnails[i].name)
+          );
 
-        const response = await axios.post("/list/upload", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+          const response = await axios.post("/list/upload", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+        }
       }
     } catch (error) {
       console.error("Error uploading:", error);

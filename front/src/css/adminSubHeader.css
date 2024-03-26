@@ -14,11 +14,13 @@
 .adminSubHeader .box img {
   width: 1.56vw;
   margin-left: 1.46vw;
+  cursor: pointer;
 }
 .adminSubHeader .box p {
   font-size: 1.2vw;
   font-weight: 60;
   margin-left: 0.52vw;
+  cursor: pointer;
 }
 .adminSubHeader > p {
   width: 84.22%;

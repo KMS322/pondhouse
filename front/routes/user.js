@@ -68,7 +68,6 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
         attributes: ["admin_id"],
       });
 
-      console.log("fullUserWithoutPassword : ", fullUserWithoutPassword);
       return res.status(200).json(fullUserWithoutPassword);
     });
   })(req, res, next);

@@ -23,7 +23,14 @@ const PortfolioS2 = () => {
               return (
                 <div className="video_box" key={index}>
                   <div className="video">
-                    <img src={`/thumbnails/${list.thumbnail_src}`} alt="" />
+                    {list.thumbnail_src ? (
+                      <img src={`/thumbnails/${list.thumbnail_src}`} alt="" />
+                    ) : (
+                      <img
+                        src={`https://img.youtube.com/vi/${list.file_id}/mqdefault.jpg`}
+                        alt=""
+                      />
+                    )}
                     <img
                       src="/images/play_btn.png"
                       alt=""
