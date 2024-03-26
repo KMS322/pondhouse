@@ -11,7 +11,9 @@ import EventPopup from "../components/contact/eventPopup";
 import axios from "axios";
 const AdminPopup = () => {
   const dispatch = useDispatch();
-  const { popup, activePopupDone } = useSelector((state) => state.popup);
+  const { popup, activePopupDone, addPopupDone } = useSelector(
+    (state) => state.popup
+  );
   const [openPopup, setOpenPopup] = useState(false);
   const [activePopup, setActivePopup] = useState("off");
   const handleClose = () => {
@@ -76,6 +78,11 @@ const AdminPopup = () => {
       window.location.href = "/adminPopup";
     }
   }, [activePopupDone]);
+  useEffect(() => {
+    if (addPopupDone) {
+      window.location.href = "/adminPopup";
+    }
+  }, [addPopupDone]);
   return (
     <>
       <AdminSubHeader data={"팝업 관리"} />

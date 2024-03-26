@@ -30,9 +30,9 @@ router.post("/upload", upload.single("file"), async (req, res, next) => {
 router.post("/add", async (req, res, next) => {
   try {
     const prev = await Popup.findAll();
-    // if (prev.length !== 0) {
-    //   await Popup.destroyAll();
-    // }
+    if (prev.length !== 0) {
+      await Popup.destroyAll();
+    }
     const added = await Popup.create({
       img_src: req.body.selectedFileName,
     });
