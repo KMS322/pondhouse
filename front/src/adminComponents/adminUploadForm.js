@@ -7,13 +7,13 @@ import axios from "axios";
 const AdminUploadForm = ({ handlePopup }) => {
   const dispatch = useDispatch();
   const [urls, setUrls] = useState([""]);
-  const { addListsDone, lists } = useSelector((state) => state.videoList);
+  const { addListsDone } = useSelector((state) => state.videoList);
   const [thumbnails, setThumbnails] = useState(Array(urls.length).fill(null));
   useEffect(() => {
     if (addListsDone) {
       window.location.href = "/adminLists";
     }
-  }, [lists]);
+  }, [addListsDone]);
   const handleInput = (e, index) => {
     const newUrls = [...urls];
     newUrls[index] = e.target.value;

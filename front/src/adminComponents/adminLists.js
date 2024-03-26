@@ -19,7 +19,6 @@ const AdminLists = () => {
     (state) => state.videoList
   );
   const orderedLists = lists && lists.slice().sort((a, b) => a.order - b.order);
-  console.log("orderedLists : ", orderedLists);
   const [openLoading, setOpenLoading] = useState(false);
   const [loadingMsg, setLoadingMsg] = useState("");
 
@@ -39,12 +38,12 @@ const AdminLists = () => {
   };
   useEffect(() => {
     if (addListsDone) {
-      window.location.href = "/adminMain";
+      window.location.href = "/adminLists";
     }
   }, [addListsDone, lists]);
   useEffect(() => {
     if (deleteListDone) {
-      window.location.href = "/adminMain";
+      window.location.href = "/adminLists";
     }
   }, [deleteListDone]);
   useEffect(() => {
@@ -57,7 +56,7 @@ const AdminLists = () => {
       setOpenLoading(true);
       const timeoutId = setTimeout(() => {
         setOpenLoading(false);
-        window.location.href = "/adminMain";
+        window.location.href = "/adminLists";
       }, 2000);
       return () => clearTimeout(timeoutId);
     }
