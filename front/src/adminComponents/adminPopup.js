@@ -41,6 +41,9 @@ const AdminPopup = () => {
             "Content-Type": "multipart/form-data",
           },
         });
+      } else {
+        alert("이미지를 선택해주세요.");
+        return;
       }
 
       dispatch({

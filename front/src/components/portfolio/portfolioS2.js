@@ -8,6 +8,7 @@ const PortfolioS2 = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(0);
   const { lists } = useSelector((state) => state.videoList);
+  const orderedLists = lists && lists.slice().sort((a, b) => a.order - b.order);
   useEffect(() => {
     dispatch({
       type: LOAD_LISTS_REQUEST,
@@ -18,8 +19,8 @@ const PortfolioS2 = () => {
     <>
       <div className="portfolio_s2">
         <div className="article_container">
-          {lists &&
-            lists.map((list, index) => {
+          {orderedLists &&
+            orderedLists.map((list, index) => {
               return (
                 <div className="video_box" key={index}>
                   <div className="video">
