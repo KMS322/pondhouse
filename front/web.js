@@ -9,6 +9,7 @@ app.use(
   "/thumbnails",
   express.static(path.join(__dirname, "public", "thumbnails"))
 );
+app.use("/popups", express.static(path.join(__dirname, "public", "popups")));
 
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
