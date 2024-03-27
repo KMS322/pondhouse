@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const { Popup } = require("../models");
 const multer = require("multer");
+const fs = require("fs");
+const path = require("path");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -29,14 +31,31 @@ router.post("/upload", upload.single("file"), async (req, res, next) => {
 
 router.post("/add", async (req, res, next) => {
   try {
-    const prev = await Popup.findAll();
-    if (prev.length !== 0) {
-      await Popup.destroyAll();
+    const prev = await Popup.findOne({ where: {} });
+
+    if (prev) {
+      const jsonPrev = prev.toJSON();
+      console.log("jsonPrev : ", jsonPrev);
+      const imgSrc = jsonPrev.img_src;
+
+      if (imgSrc) {
+        const filePath = path.join(__dirname, "..", "public", "popups", imgSrc);
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.error("Error deleting file:", err);
+          } else {
+            console.log("File deleted successfully : ", jsonPrev.img_src);
+          }
+        });
+      }
     }
+    await Popup.destroy({ where: {} });
+
     const added = await Popup.create({
       img_src: req.body.selectedFileName,
+      active: "off",
     });
-    res.status(200).send(added.img_src);
+    res.status(200).send("added.img_src");
   } catch (error) {
     console.error(error);
     next();
@@ -55,7 +74,6 @@ router.post("/load", async (req, res, next) => {
 
 router.post("/active", async (req, res, next) => {
   try {
-    console.log("AA");
     await Popup.update(
       {
         active: req.body.active,
@@ -68,4 +86,5 @@ router.post("/active", async (req, res, next) => {
     next();
   }
 });
+
 module.exports = router;
