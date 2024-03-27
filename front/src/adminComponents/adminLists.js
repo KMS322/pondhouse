@@ -15,9 +15,13 @@ const AdminLists = () => {
   const me = location.state && location.state.me;
   const [openForm, setOpenForm] = useState(false);
   const dispatch = useDispatch();
-  const { lists, addListsDone, deleteListDone, addListsLoading } = useSelector(
-    (state) => state.videoList
-  );
+  const {
+    lists,
+    addListsDone,
+    deleteListDone,
+    addListsLoading,
+    changeListsDone,
+  } = useSelector((state) => state.videoList);
   const orderedLists = lists && lists.slice().sort((a, b) => a.order - b.order);
   const [openLoading, setOpenLoading] = useState(false);
   const [loadingMsg, setLoadingMsg] = useState("");
@@ -90,6 +94,12 @@ const AdminLists = () => {
       },
     });
   };
+
+  useEffect(() => {
+    if (changeListsDone) {
+      window.location.href = "/adminLists";
+    }
+  }, [changeListsDone]);
   return (
     <>
       <AdminSubHeader data={"영상 관리"} />
