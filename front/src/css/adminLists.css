@@ -114,3 +114,20 @@
   cursor: pointer;
   color: white;
 }
+.adminLists .update_btn {
+  width: 5.47vw;
+  height: 1.67vw;
+  margin-top: 1.77vw;
+  margin-left: auto;
+  justify-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  cursor: pointer;
+}
+.adminLists .update_btn p {
+  font-size: 0.8vw;
+  cursor: pointer;
+  color: white;
+}

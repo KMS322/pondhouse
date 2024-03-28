@@ -146,4 +146,33 @@ router.post("/delete", async (req, res, next) => {
     next();
   }
 });
+
+router.post("/update", async (req, res, next) => {
+  try {
+    const allLists = await VideoList.findAll({});
+    for (const list of allLists) {
+      const videoId = list.file_url.match(/[?&]v=([^&]+)/)[1];
+      let videoTitle;
+      try {
+        videoTitle = await getVideoTitle(videoId);
+      } catch (error) {
+        console.error("Error: ", error);
+      }
+
+      await VideoList.update(
+        {
+          file_title: videoTitle,
+        },
+        {
+          where: { id: list.id },
+        }
+      );
+    }
+    res.status(200).json();
+  } catch (error) {
+    console.error(error);
+    next();
+  }
+});
+
 module.exports = router;

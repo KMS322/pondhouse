@@ -6,6 +6,7 @@ import {
   LOAD_LISTS_REQUEST,
   DELETE_LIST_REQUEST,
   CHANGE_LISTS_REQUEST,
+  UPDATE_LISTS_REQUEST,
 } from "../reducers/videoList";
 import AdminSubHeader from "./adminSubHeader";
 import UploadForm from "./adminUploadForm";
@@ -21,6 +22,8 @@ const AdminLists = () => {
     deleteListDone,
     addListsLoading,
     changeListsDone,
+    updateListsDone,
+    updateListsLoading,
   } = useSelector((state) => state.videoList);
   const orderedLists = lists && lists.slice().sort((a, b) => a.order - b.order);
   const [openLoading, setOpenLoading] = useState(false);
@@ -100,6 +103,31 @@ const AdminLists = () => {
       window.location.href = "/adminLists";
     }
   }, [changeListsDone]);
+  const handleUpdate = () => {
+    dispatch({
+      type: UPDATE_LISTS_REQUEST,
+    });
+  };
+  useEffect(() => {
+    if (updateListsLoading) {
+      setLoadingMsg("loading");
+      setOpenLoading(true);
+      setOpenForm(false);
+    } else if (updateListsDone) {
+      setLoadingMsg("done");
+      setOpenLoading(true);
+      const timeoutId = setTimeout(() => {
+        setOpenLoading(false);
+        window.location.href = "/adminVideoLists";
+      }, 2000);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [updateListsLoading]);
+  useEffect(() => {
+    if (updateListsDone) {
+      window.location.href = "/adminVideoLists";
+    }
+  }, [updateListsDone]);
   return (
     <>
       <AdminSubHeader data={"영상 관리"} />
@@ -164,6 +192,9 @@ const AdminLists = () => {
           </div>
           <div className="change_btn">
             <p onClick={handleChange}>순서저장</p>
+          </div>
+          <div className="update_btn">
+            <p onClick={handleUpdate}>Title Update</p>
           </div>
           {openForm ? (
             <UploadForm

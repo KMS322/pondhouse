@@ -13,6 +13,9 @@ export const initialState = {
   deleteListLoading: false,
   deleteListDone: false,
   deleteListError: null,
+  updateListsLoading: false,
+  updateListsDone: false,
+  updateListsError: null,
   lists: null,
 };
 
@@ -31,6 +34,10 @@ export const CHANGE_LISTS_FAILURE = "CHANGE_LISTS_FAILURE";
 export const DELETE_LIST_REQUEST = "DELETE_LIST_REQUEST";
 export const DELETE_LIST_SUCCESS = "DELETE_LIST_SUCCESS";
 export const DELETE_LIST_FAILURE = "DELETE_LIST_FAILURE";
+
+export const UPDATE_LISTS_REQUEST = "UPDATE_LISTS_REQUEST";
+export const UPDATE_LISTS_SUCCESS = "UPDATE_LISTS_SUCCESS";
+export const UPDATE_LISTS_FAILURE = "UPDATE_LISTS_FAILURE";
 
 const reducer = (state = initialState, action) => {
   return produce(state, (draft) => {
@@ -88,6 +95,19 @@ const reducer = (state = initialState, action) => {
       case DELETE_LIST_FAILURE:
         draft.deleteListLoading = false;
         draft.deleteListError = action.error;
+        break;
+      case UPDATE_LISTS_REQUEST:
+        draft.updateListsLoading = true;
+        draft.updateListsError = null;
+        draft.updateListsDone = false;
+        break;
+      case UPDATE_LISTS_SUCCESS:
+        draft.updateListsLoading = false;
+        draft.updateListsDone = true;
+        break;
+      case UPDATE_LISTS_FAILURE:
+        draft.updateListsLoading = false;
+        draft.updateListsError = action.error;
         break;
       default:
         return state;
