@@ -1,0 +1,15 @@
+@media screen and (max-width: 500px) {
+  .modal {
+    width: 60%;
+    height: 20%;
+  }
+  .modal > img {
+    width: 15%;
+    margin-top: 10vw;
+  }
+  .modal > p {
+    font-size: 3vw;
+    line-height: 6vw;
+    margin-top: 7vw;
+  }
+}

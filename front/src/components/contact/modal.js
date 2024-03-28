@@ -1,4 +1,5 @@
 import "../../css/modal.css";
+import "../../css/modal_mobile.css";
 
 const Modal = ({ data }) => {
   return (
