@@ -58,7 +58,7 @@ const Footer = () => {
           <p>PHONE 010-7747-5367</p>
           <p>studiofrogg@gmail.com</p>
           <div className="num_box">
-            <p>사업자등록번호 224-62-00375</p>
+            <p>사업자등록번호 454-16-02467</p>
             <p>대표자 강구형</p>
           </div>
           <p>대구광역시 동구 경안로 722 3층 STUDIOFROG</p>
