@@ -6,6 +6,7 @@ const MainS2 = () => {
   const dispatch = useDispatch();
   const [currentVideo, setCurrentVideo] = useState(0);
   const { lists } = useSelector((state) => state.videoList);
+  const orderedLists = lists && lists.slice().sort((a, b) => a.order - b.order);
   useEffect(() => {
     dispatch({
       type: LOAD_LISTS_REQUEST,
@@ -14,7 +15,7 @@ const MainS2 = () => {
   return (
     <div className="main_s2">
       <p>PORTFOLIO</p>
-      {lists && lists.length !== 0 ? (
+      {orderedLists && orderedLists.length !== 0 ? (
         <div className="article_container">
           <img
             src={currentVideo === 0 ? "" : "/images/arrow_left.png"}
@@ -25,7 +26,7 @@ const MainS2 = () => {
           />
           <div className="youtube_box">
             <YouTube
-              videoId={lists[currentVideo].file_id}
+              videoId={orderedLists[currentVideo].file_id}
               opts={{
                 playerVars: {
                   autoplay: 1,
@@ -42,7 +43,7 @@ const MainS2 = () => {
 
           <img
             src={
-              lists && currentVideo === lists.length - 1
+              orderedLists && currentVideo === orderedLists.length - 1
                 ? ""
                 : "/images/arrow_right.png"
             }
