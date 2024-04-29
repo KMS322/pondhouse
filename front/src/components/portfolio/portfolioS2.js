@@ -66,7 +66,7 @@ const PortfolioS2 = () => {
             />
             <div className="video_box">
               <YouTube
-                videoId={lists[currentVideo].file_id}
+                videoId={orderedLists[currentVideo].file_id}
                 opts={{
                   playerVars: {
                     autoplay: 1,
