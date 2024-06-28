@@ -19,6 +19,11 @@ const AdminUploadForm = ({ handlePopup }) => {
     newUrls[index] = e.target.value;
     setUrls(newUrls);
   };
+  const handleFileChange = (e, index) => {
+    const newThumbnails = [...thumbnails];
+    newThumbnails[index] = e.target.files[0];
+    setThumbnails(newThumbnails);
+  };
 
   const addInput = () => {
     setUrls([...urls, ""]);
