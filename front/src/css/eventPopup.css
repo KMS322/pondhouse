@@ -16,3 +16,13 @@
   right: 1vw;
   cursor: pointer;
 }
+.eventPopup img:last-child {
+  transform: scaleX(1.3) scaleY(1.3);
+}
+@media (max-width: 500px) {
+  .eventPopup img:last-child {
+    width: 90vw;
+    height: auto;
+    transform: none;
+  }
+}

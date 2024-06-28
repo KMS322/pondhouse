@@ -30,12 +30,6 @@ const AdminUploadForm = ({ handlePopup }) => {
     setUrls(newUrls);
   };
 
-  const handleFileChange = (e, index) => {
-    const newThumbnails = [...thumbnails];
-    newThumbnails[index] = e.target.files[0];
-    setThumbnails(newThumbnails);
-  };
-
   const sendData = async (e) => {
     e.preventDefault();
     const thumbnailSrcs = thumbnails
