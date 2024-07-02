@@ -45,7 +45,7 @@ const Footer = () => {
                 navigate("/contact");
               }}
             >
-              CONTACT
+              PRICE/CONTACT
             </p>
           </div>
           <p>

@@ -9,8 +9,8 @@
   z-index: 3;
 }
 .eventPopup img:first-child {
-  width: 0.7vw;
-  height: 0.7vw;
+  width: 1.4vw;
+  height: 1.4vw;
   position: absolute;
   top: 1vw;
   right: 1vw;

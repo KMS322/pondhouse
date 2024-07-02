@@ -32,7 +32,7 @@ const Header = ({ page }) => {
               borderBottom: page === "/contact" ? "1px solid #707070" : "",
             }}
           >
-            CONTACT
+            PRICE/CONTACT
           </p>
         </div>
       </div>
