@@ -89,6 +89,20 @@ const AdminLists = () => {
     setVideoLists(updatedWithOrder);
   };
 
+  const moveFirst = (index) => {
+    if (index === videoLists.length - 1) {
+      const updatedLists = [...videoLists];
+      const movedItem = updatedLists.pop();
+      updatedLists.unshift(movedItem);
+
+      const updatedWithOrder = updatedLists.map((item, index) => ({
+        ...item,
+        order: index + 1,
+      }));
+      setVideoLists(updatedWithOrder);
+    }
+  };
+
   const handleChange = () => {
     dispatch({
       type: CHANGE_LISTS_REQUEST,
@@ -167,7 +181,15 @@ const AdminLists = () => {
                     <p>{list.thumbnail_src}</p>
                     <div className="btn_box">
                       {index === orderedLists.length - 1 ? (
-                        <p></p>
+                        <p
+                          onClick={() => moveFirst(index)}
+                          style={{
+                            border: "1px solid black",
+                            cursor: "pointer",
+                          }}
+                        >
+                          맨위로 ▲
+                        </p>
                       ) : (
                         <p onClick={() => moveItem(index, index + 1)}>
                           아래로 ▼
