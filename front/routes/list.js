@@ -104,6 +104,7 @@ router.post("/change", async (req, res, next) => {
         { where: { file_url: list.file_url } }
       );
     }
+    res.status(200).send("ok");
   } catch (error) {
     console.error(error);
     next();
